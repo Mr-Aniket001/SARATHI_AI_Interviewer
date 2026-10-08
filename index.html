@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARATHI-AI Interviewer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="grid-background"></div>
+
+    <!-- =========================================================
+         TOP BAR
+    ========================================================= -->
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-logo">AI</div>
+            <div class="brand-text">SARATHI<span>-AI</span> Interviewer</div>
+        </div>
+
+        <div class="live-area">
+            <div class="live-status">
+                <div class="live-dot"></div>
+                <span id="liveText">LIVE</span>
+            </div>
+            <div class="timer" id="timer">30:00</div>
+        </div>
+    </header>
+
+    <!-- =========================================================
+         MAIN
+    ========================================================= -->
+    <main class="main">
+        <!--
+             LEFT AI PANEL
+        ====================================================== -->
+        <aside class="ai-panel">
+            <div class="ai-hologram">
+                <div class="holo-ring ring-one"></div>
+                <div class="holo-ring ring-two"></div>
+                <div class="holo-ring ring-three"></div>
+
+                <div class="robot">
+                    <div class="robot-head">
+                        <div class="cyber-visor">
+                            <div class="eye left"></div>
+                            <div class="eye right"></div>
+                        </div>
+                        <div class="ai-core"></div>
+                    </div>
+
+                    <div class="robot-body">
+                        <div class="body-core"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ai-name">SARA<span>THI</span></div>
+
+            <div class="ai-status">
+                <div class="status-dot"></div>
+                <span id="aiStatus">Listening...</span>
+            </div>
+
+            <div class="question-card">
+                <div class="question-title">◈ CURRENT QUESTION</div>
+                <div class="question-text">
+                    Waiting for the AI interviewer to generate a question...
+                </div>
+            </div>
+
+            <button class="stop-button" id="stopButton">■ &nbsp; STOP INTERVIEW</button>
+        </aside>
+
+        <!-- =====================================================
+             WORKSPACE
+        ====================================================== -->
+        <section class="workspace">
+            <div class="code-panel">
+                <div class="code-header">
+                    <div>
+                        <span class="code-title">Coding Interview</span>
+                        <span class="question-number">Question 04 / 10</span>
+                    </div>
+
+                    <div class="code-actions">
+                        <select class="language-select" id="languageSelect">
+                            <option>Python</option>
+                            <option>Java</option>
+                            <option>C++</option>
+                            <option>C</option>
+                            <option>JavaScript</option>
+                            <option>Go</option>
+                            <option>Rust</option>
+                        </select>
+
+                        <button class="code-btn" id="clearButton">Clear</button>
+                        <button class="code-btn run" id="runButton">▶ Run</button>
+                        <button class="code-btn submit" id="submitButton">✓ Submit</button>
+                    </div>
+                </div>
+
+                <div class="editor">
+                    <div class="line-numbers" id="lineNumbers">
+                        1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10
+                    </div>
+
+                    <textarea class="code-input" id="codeInput" spellcheck="false">def find_largest(arr):
+    largest = arr[0]
+
+    for num in arr:
+        if num > largest:
+            largest = num
+
+    return largest
+
+print(find_largest([12, 45, 7, 89, 23]))</textarea>
+                </div>
+            </div>
+
+            <div class="terminal-panel">
+                <div class="terminal-header">&gt; Terminal</div>
+                <div class="terminal-body" id="terminalBody">
+                    $ python main.py
+                    <br><br>
+                    <span class="terminal-success">Output: 89</span>
+                    <br>
+                    Process finished successfully.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =========================================================
+         GOOGLE MEET STYLE CAMERA + MIC WINDOW
+    ========================================================= -->
+    <div class="meet-window" id="meetWindow">
+        <div class="meet-header" id="meetDragHandle" tabindex="0" aria-label="Move camera window with arrow keys">
+            <div class="meet-title">YOU</div>
+            <div class="meet-live">
+                <div class="meet-live-dot"></div>
+                LIVE
+            </div>
+        </div>
+
+        <video class="camera-video" id="cameraVideo" autoplay playsinline muted></video>
+
+        <div class="camera-placeholder" id="cameraPlaceholder">
+            <div class="camera-placeholder-icon">◉</div>
+            <span>Camera permission required</span>
+        </div>
+
+        <div class="meet-controls">
+            <button class="meet-control on" id="micButton" title="Microphone">🎙</button>
+            <button class="meet-control on" id="cameraButton" title="Camera">◉</button>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         DASHBOARD BUTTON
+    ========================================================= -->
+    <button class="dashboard-launcher" id="dashboardLauncher" title="Open Dashboard">
+        <div class="dashboard-icon">✓</div>
+        <span>DASHBOARD</span>
+    </button>
+
+    <!-- =========================================================
+         OVERLAY
+    ========================================================= -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- =========================================================
+         EMERGENCY MODAL
+    ========================================================= -->
+    <div class="emergency-modal" id="emergencyModal">
+        <div class="warning-icon">!</div>
+
+    <h2>
+        Have any emergency?
+    </h2>
+
+    <p>
+        Are you sure you want to stop the interview
+        at this point?
+    </p>
+
+    <div class="emergency-buttons">
+
+        <button
+            class="yes-btn"
+            id="yesButton"
+        >
+            YES
+        </button>
+
+        <button
+            class="no-btn"
+            id="noButton"
+        >
+            NO
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     PERFORMANCE DASHBOARD
+========================================================= -->
+
+<aside
+    class="performance-dashboard"
+    id="performanceDashboard"
+>
+
+    <div class="dashboard-header">
+
+        <div class="dashboard-title">
+
+            <div class="trophy">
+                ★
+            </div>
+
+            <div>
+
+                <h2>
+                    Interview Completed
+                </h2>
+
+                <p>
+                    Here's your performance summary
+                </p>
+
+            </div>
+
+        </div>
+
+        <button
+            class="close-dashboard"
+            id="closeDashboard"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="dashboard-content">
+
+        <!-- Score -->
+
+        <div class="score-section">
+
+            <div
+                class="score-circle"
+                id="scoreCircle"
+                style="--score: 85%;"
+            >
+
+                <div
+                    class="score-value"
+                    id="scoreValue"
+                >
+                    85%
+                </div>
+
+                <div class="score-label">
+                    Overall
+                </div>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <span class="stat-name">
+                        Correct Answers
+                    </span>
+
+                    <span
+                        class="stat-value"
+                        id="correctStat"
+                    >
+                        8 / 10
+                    </span>
+
+                </div>
+
+                <div class="stat">
+
+                    <span class="stat-name">
+                        Total Questions
+                    </span>
+
+                    <span
+                        class="stat-value"
+                        id="totalStat"
+                    >
+                        10
+                    </span>
+
+                </div>
+
+                <div class="stat">
+
+                    <span class="stat-name">
+                        Accuracy
+                    </span>
+
+                    <span
+                        class="stat-value"
+                        id="accuracyStat"
+                    >
+                        80%
+                    </span>
+
+                </div>
+
+                <div class="stat">
+
+                    <span class="stat-name">
+                        Time Taken
+                    </span>
+
+                    <span
+                        class="stat-value"
+                        id="timeTakenStat"
+                    >
+                        00:00
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Difficulty -->
+
+        <section class="dashboard-section">
+
+            <h3>
+                Performance by Difficulty
+            </h3>
+
+            <div class="donut-grid">
+
+                <div class="donut-item">
+
+                    <div
+                        class="donut"
+                        style="--percent: 100%;"
+                    >
+                        <span>100%</span>
+                    </div>
+
+                    <div class="donut-name">
+                        Easy
+                    </div>
+
+                </div>
+
+
+                <div class="donut-item">
+
+                    <div
+                        class="donut"
+                        style="--percent: 80%;"
+                    >
+                        <span>80%</span>
+                    </div>
+
+                    <div class="donut-name">
+                        Medium
+                    </div>
+
+                </div>
+
+
+                <div class="donut-item">
+
+                    <div
+                        class="donut"
+                        style="--percent: 67%;"
+                    >
+                        <span>67%</span>
+                    </div>
+
+                    <div class="donut-name">
+                        Hard
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Subject Performance -->
+
+        <section class="dashboard-section">
+
+            <h3>
+                Subject-wise Performance
+            </h3>
+
+
+            <div class="performance-row">
+
+                <div class="performance-info">
+                    <span>Coding Logic</span>
+                    <span>90%</span>
+                </div>
+
+                <div class="bar">
+                    <div
+                        class="bar-fill"
+                        style="width:90%;"
+                    ></div>
+                </div>
+
+            </div>
+
+
+            <div class="performance-row">
+
+                <div class="performance-info">
+                    <span>Problem Solving</span>
+                    <span>80%</span>
+                </div>
+
+                <div class="bar">
+                    <div
+                        class="bar-fill"
+                        style="width:80%;"
+                    ></div>
+                </div>
+
+            </div>
+
+
+            <div class="performance-row">
+
+                <div class="performance-info">
+                    <span>Syntax & Grammar</span>
+                    <span>75%</span>
+                </div>
+
+                <div class="bar">
+                    <div
+                        class="bar-fill"
+                        style="width:75%;"
+                    ></div>
+                </div>
+
+            </div>
+
+
+            <div class="performance-row">
+
+                <div class="performance-info">
+                    <span>Time Management</span>
+                    <span>85%</span>
+                </div>
+
+                <div class="bar">
+                    <div
+                        class="bar-fill"
+                        style="width:85%;"
+                    ></div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Recommendation -->
+
+        <div class="recommendation">
+
+            <div class="recommendation-title">
+                AI RECOMMENDATION
+            </div>
+
+            <p>
+                Strong performance in coding logic and
+                problem solving. Continue practicing harder
+                problems to improve advanced interview
+                performance.
+            </p>
+
+        </div>
+
+    </div>
+
+</aside>
+
+<script src="app.js"></script>
+
+</body>
+</html>

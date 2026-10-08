@@ -1,0 +1,2 @@
+code_execution_model = "zai-org/GLM-5.3"
+interviewer_chat_model = "openai/gpt-oss-120b"
