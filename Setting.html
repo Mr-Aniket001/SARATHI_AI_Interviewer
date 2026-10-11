@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<link rel="stylesheet" href="Setting.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SARATHI-AI Interviewer // Systems & Settings Matrix</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts: Orbitron & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body class="min-h-screen text-slate-100 cyber-grid flex flex-col selection:bg-neon-orange selection:text-black">
+
+  <header class="sticky top-0 z-40 w-full border-b border-neon-orange/20 bg-obsidian-950/85 backdrop-blur-md px-4 lg:px-8 py-3.5 transition-all">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+      
+      <!-- Brand & Status -->
+      <div class="flex items-center gap-3.5">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 text-neutral-300 hover:text-neon-orange transition-colors">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+        
+        <div class="relative flex items-center justify-center w-10 h-10 rounded-lg bg-obsidian-900 border border-neon-orange/50 shadow-neon-sm">
+          <i data-lucide="cpu" class="w-5 h-5 text-neon-orange animate-pulse"></i>
+          <span class="absolute -top-1 -right-1 flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-bright opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-neon-orange"></span>
+          </span>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-cyber font-bold tracking-wider text-base lg:text-lg text-white">SARATHI-AI<span class="text-neon-orange text-glow"> Interviewer</span></span>
+            <span class="hidden sm:inline-block text-[10px] font-mono uppercase px-2 py-0.5 rounded border border-neon-orange/40 bg-neon-dim text-neon-orange font-semibold">
+              SETTINGS // CORE v3.8
+            </span>
+          </div>
+          <p class="text-xs text-neutral-400 font-mono hidden md:block">Neural Interview Operating System</p>
+        </div>
+      </div>
+
+      <!-- Quick Search Bar -->
+      <div class="flex-1 max-w-md hidden md:block">
+        <div class="relative group">
+          <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-neutral-400 group-focus-within:text-neon-orange transition-colors"></i>
+          <input 
+            type="text" 
+            id="settingsSearchInput"
+            placeholder="Search parameters (e.g., password, mic, plan, data)..." 
+            class="w-full bg-obsidian-900/90 text-sm text-neutral-200 placeholder-neutral-500 rounded-lg pl-10 pr-4 py-2 border border-obsidian-700 focus:border-neon-orange focus:outline-none focus:ring-1 focus:ring-neon-orange/50 transition-all font-mono"
+          />
+          <kbd class="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] font-mono text-neutral-500 bg-obsidian-800 border border-obsidian-700 px-1.5 py-0.5 rounded">Ctrl+K</kbd>
+        </div>
+      </div>
+
+      <!-- HUD Micro Indicator & Profile Pill -->
+      <div class="flex items-center gap-3">
+        <!-- Floating HUD Status (Sync state) -->
+        <div class="hidden xl:flex items-center gap-2 bg-obsidian-900 border border-obsidian-700 px-3 py-1.5 rounded-full text-xs font-mono">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+          <span class="text-neutral-400">STATUS:</span>
+          <span class="text-neon-orange font-semibold">NEURAL_ONLINE</span>
+        </div>
+
+        <!-- Quick Help Trigger -->
+        <button onclick="switchTab('help-feedback')" class="p-2 rounded-lg bg-obsidian-900 border border-obsidian-700 text-neutral-300 hover:text-neon-orange hover:border-neon-orange/50 transition-all" title="Give Feedback">
+          <i data-lucide="message-square-plus" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Current User Avatar Header Mini -->
+        <div class="flex items-center gap-2.5 pl-2 border-l border-obsidian-700">
+          <div class="relative cursor-pointer" onclick="switchTab('account')">
+            <img id="navAvatarImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23141414'/%3E%3Ccircle cx='50' cy='36' r='17' fill='%23505050'/%3E%3Cpath d='M18 91c2-20 14-31 32-31s30 11 32 31' fill='%23505050'/%3E%3C/svg%3E" alt="Avatar" class="w-8 h-8 rounded-full border border-neon-orange/60 object-cover" />
+            <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-neon-orange rounded-full border-2 border-obsidian-950"></div>
+          </div>
+          <span id="navProfileName" class="text-sm font-medium text-white hidden sm:block">Candidate Profile</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <div class="max-w-7xl w-full mx-auto flex-1 flex flex-col lg:flex-row px-4 lg:px-8 py-6 gap-6 relative">
+    
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-30 w-72 lg:w-64 bg-obsidian-950 lg:bg-transparent p-5 lg:p-0 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out lg:static flex flex-col justify-between shrink-0 border-r border-obsidian-800 lg:border-none">
+      
+      <div class="space-y-6">
+        <!-- Mobile close button -->
+        <div class="flex items-center justify-between lg:hidden pb-4 border-b border-obsidian-800">
+          <span class="font-cyber text-neon-orange font-bold text-sm tracking-widest">NAVIGATION</span>
+          <button id="mobileMenuClose" class="p-1.5 text-neutral-400 hover:text-white">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Navigation items list -->
+        <div class="space-y-1.5" id="navTabsContainer">
+          
+          <button data-tab="account" onclick="switchTab('account')" class="nav-tab w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-white bg-obsidian-800/90 border border-neon-orange/60 shadow-neon-sm transition-all group">
+            <i data-lucide="user-cog" class="w-4 h-4 text-neon-orange transition-transform group-hover:scale-110"></i>
+            <span class="tracking-wide">Account & Profile</span>
+          </button>
+
+          <button data-tab="security" onclick="switchTab('security')" class="nav-tab w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-neutral-400 hover:text-white hover:bg-obsidian-850 border border-transparent hover:border-obsidian-700 transition-all group">
+            <i data-lucide="shield-check" class="w-4 h-4 text-neutral-400 group-hover:text-neon-orange transition-colors"></i>
+            <span class="tracking-wide">Security & Login</span>
+          </button>
+
+          <button data-tab="privacy" onclick="switchTab('privacy')" class="nav-tab w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-neutral-400 hover:text-white hover:bg-obsidian-850 border border-transparent hover:border-obsidian-700 transition-all group">
+            <i data-lucide="lock" class="w-4 h-4 text-neutral-400 group-hover:text-neon-orange transition-colors"></i>
+            <span class="tracking-wide">Privacy & Data</span>
+          </button>
+
+          <button data-tab="notifications" onclick="switchTab('notifications')" class="nav-tab w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-neutral-400 hover:text-white hover:bg-obsidian-850 border border-transparent hover:border-obsidian-700 transition-all group">
+            <i data-lucide="bell" class="w-4 h-4 text-neutral-400 group-hover:text-neon-orange transition-colors"></i>
+            <span class="tracking-wide">Notifications</span>
+          </button>
+
+          <button data-tab="subscription" onclick="switchTab('subscription')" class="nav-tab w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-neutral-400 hover:text-white hover:bg-obsidian-850 border border-transparent hover:border-obsidian-700 transition-all group">
+            <i data-lucide="credit-card" class="w-4 h-4 text-neutral-400 group-hover:text-neon-orange transition-colors"></i>
+            <span class="tracking-wide">Subscription & Usage</span>
+            <span class="ml-auto text-[10px] font-mono uppercase bg-neon-dim text-neon-orange px-1.5 py-0.5 rounded border border-neon-orange/30">PRO</span>
+          </button>
+
+          <button data-tab="accessibility" onclick="switchTab('accessibility')" class="nav-tab w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-neutral-400 hover:text-white hover:bg-obsidian-850 border border-transparent hover:border-obsidian-700 transition-all group">
+            <i data-lucide="sliders" class="w-4 h-4 text-neutral-400 group-hover:text-neon-orange transition-colors"></i>
+            <span class="tracking-wide">Accessibility & Display</span>
+          </button>
+
+          <button data-tab="help-feedback" onclick="switchTab('help-feedback')" class="nav-tab w-full flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-neutral-400 hover:text-white hover:bg-obsidian-850 border border-transparent hover:border-obsidian-700 transition-all group">
+            <i data-lucide="message-square" class="w-4 h-4 text-neutral-400 group-hover:text-neon-orange transition-colors"></i>
+            <span class="tracking-wide">Help & Feedback</span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Quick Hardware Status Widget in Sidebar -->
+      <div class="mt-8 p-4 rounded-xl border border-obsidian-700 bg-obsidian-900/90 text-xs space-y-3 font-mono">
+        <div class="flex items-center justify-between text-neutral-400">
+          <span class="text-neon-orange font-semibold flex items-center gap-1.5">
+            <i data-lucide="radio" class="w-3.5 h-3.5 animate-pulse"></i> LIVE SENSORS
+          </span>
+          <span id="sensorLatency" class="text-neutral-500">14ms</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-neutral-300">Camera Feed</span>
+          <span id="sidebarCamStatus" class="text-emerald-400 font-semibold flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> READY
+          </span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-neutral-300">Neural Mic</span>
+          <span id="sidebarMicStatus" class="text-emerald-400 font-semibold flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> READY
+          </span>
+        </div>
+        <div class="pt-2 border-t border-obsidian-800 text-[11px] text-neutral-500">
+          Sync Encrypted // 4096-bit RSA
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Backdrop for mobile sidebar -->
+    <div id="sidebarBackdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-20 hidden lg:hidden"></div>
+
+    <main class="flex-1 min-w-0">
+
+      <!-- ========================================== -->
+      <!-- TAB 1: ACCOUNT & PROFILE                   -->
+      <!-- ========================================== -->
+      <section id="tab-account" class="tab-content space-y-6">
+        
+        <!-- Header -->
+        <div class="glass-panel p-6 rounded-2xl relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-48 h-48 bg-neon-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2 text-xs font-mono text-neon-orange uppercase tracking-widest mb-1">
+                <i data-lucide="fingerprint" class="w-4 h-4"></i> Identity & Career Dossier
+              </div>
+              <h2 class="text-2xl font-cyber font-bold text-white tracking-wide">Account & Profile</h2>
+              <p class="text-sm text-neutral-400 mt-1">Manage your candidate profile, education credentials, and targeted career domains.</p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button onclick="discardProfileChanges()" class="px-4 py-2 text-xs font-mono rounded-lg border border-obsidian-700 bg-obsidian-850 hover:bg-obsidian-800 text-neutral-300 transition-colors">
+                CLEAR
+              </button>
+              <button onclick="saveProfileChanges()" class="px-5 py-2 text-xs font-mono font-bold tracking-wider rounded-lg bg-neon-orange hover:bg-neon-bright text-black shadow-neon transition-all flex items-center gap-1.5">
+                <i data-lucide="save" class="w-4 h-4"></i> SAVE DOSSIER
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Avatar & Core Details -->
+        <div class="glass-panel p-6 rounded-2xl space-y-6">
+          <h3 class="text-base font-cyber font-semibold text-white flex items-center gap-2">
+            <i data-lucide="user" class="w-4 h-4 text-neon-orange"></i> Biometric Avatar & Verification
+          </h3>
+
+          <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 pb-6 border-b border-obsidian-800">
+            <!-- Avatar Ring -->
+            <div class="relative group">
+              <div class="w-28 h-28 rounded-2xl p-1 bg-gradient-to-tr from-neon-orange via-neutral-700 to-neon-orange/20 shadow-neon">
+                <img id="profilePreviewImg" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23141414'/%3E%3Ccircle cx='50' cy='36' r='17' fill='%23505050'/%3E%3Cpath d='M18 91c2-20 14-31 32-31s30 11 32 31' fill='%23505050'/%3E%3C/svg%3E" alt="Profile avatar placeholder" class="w-full h-full object-cover rounded-xl" />
+              </div>
+              <label for="avatarUploadInput" class="absolute -bottom-2 -right-2 p-2 rounded-xl bg-neon-orange hover:bg-neon-bright text-black cursor-pointer shadow-lg transition-transform transform hover:scale-110" title="Upload new photo">
+                <i data-lucide="camera" class="w-4 h-4"></i>
+                <input type="file" id="avatarUploadInput" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)" />
+              </label>
+            </div>
+
+            <div class="space-y-2 text-center sm:text-left flex-1">
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+                <span class="text-lg font-bold text-white" id="displayProfileName">New Candidate</span>
+                <span class="px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/40 text-emerald-400 font-mono text-xs flex items-center gap-1">
+                  <i data-lucide="check-circle-2" class="w-3 h-3"></i> AI-Verified
+                </span>
+                <span class="px-2 py-0.5 rounded-full bg-neon-dim border border-neon-orange/40 text-neon-orange font-mono text-xs">
+                  ID: #NX-UNCONFIGURED
+                </span>
+              </div>
+              <p class="text-xs text-neutral-400 font-mono">Accepts PNG, JPG or WEBP (Max: 5MB). Optimal resolution 512x512px.</p>
+              <div class="flex gap-2 justify-center sm:justify-start pt-1">
+                <button onclick="document.getElementById('avatarUploadInput').click()" class="text-xs font-mono text-neon-orange hover:underline">Change Hologram</button>
+                <span class="text-neutral-600">|</span>
+                <button onclick="resetAvatar()" class="text-xs font-mono text-rose-400 hover:underline">Remove</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input Fields Form -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 font-mono text-xs">
+            <div>
+              <label class="block text-neutral-400 mb-1.5 uppercase font-medium">Full Legal / Display Name</label>
+              <input type="text" id="inputName" placeholder="Enter your full name" class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl px-4 py-2.5 text-white placeholder-neutral-600 focus:border-neon-orange focus:ring-1 focus:ring-neon-orange outline-none transition-all">
+            </div>
+
+            <div>
+              <label class="block text-neutral-400 mb-1.5 uppercase font-medium">Primary Neural Contact (Email)</label>
+              <div class="relative">
+                <input type="email" id="inputEmail" placeholder="candidate@domain.com" class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl pl-4 pr-10 py-2.5 text-white placeholder-neutral-600 focus:border-neon-orange focus:ring-1 focus:ring-neon-orange outline-none transition-all">
+                <i data-lucide="mail-check" class="w-4 h-4 text-neutral-500 absolute right-3.5 top-1/2 -translate-y-1/2" title="Email verification pending"></i>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-neutral-400 mb-1.5 uppercase font-medium">College / University / Organization</label>
+              <input type="text" id="inputOrg" placeholder="Enter institution or current company" class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl px-4 py-2.5 text-white placeholder-neutral-600 focus:border-neon-orange focus:ring-1 focus:ring-neon-orange outline-none transition-all">
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-neutral-400 mb-1.5 uppercase font-medium">Degree Level</label>
+                <select id="inputDegree" class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl px-3 py-2.5 text-white focus:border-neon-orange focus:ring-1 focus:ring-neon-orange outline-none transition-all">
+                  <option value="" disabled selected>Select Degree</option>
+                  <option value="Ph.D. Comp Sci">Ph.D. Comp Sci</option>
+                  <option value="M.S. AI & ML">M.S. AI & ML</option>
+                  <option value="B.S. Software Engineering">B.S. Software Eng</option>
+                  <option value="Industry Veteran">Industry Veteran</option>
+                  <option value="Self-Taught">Self-Taught</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-neutral-400 mb-1.5 uppercase font-medium">Grad Year</label>
+                <input type="number" id="inputGradYear" placeholder="YYYY" min="1980" max="2035" class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl px-3 py-2.5 text-white placeholder-neutral-600 focus:border-neon-orange focus:ring-1 focus:ring-neon-orange outline-none transition-all">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 2: SECURITY & LOGIN                    -->
+      <!-- ========================================== -->
+      <section id="tab-security" class="tab-content space-y-6 hidden">
+        
+        <div class="glass-panel p-6 rounded-2xl relative overflow-hidden">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2 text-xs font-mono text-neon-orange uppercase tracking-widest mb-1">
+                <i data-lucide="shield" class="w-4 h-4"></i> Perimeter Defense & Auth
+              </div>
+              <h2 class="text-2xl font-cyber font-bold text-white tracking-wide">Security & Login</h2>
+              <p class="text-sm text-neutral-400 mt-1">Multi-factor tokens, encrypted credentials, connected identity providers, and active sessions.</p>
+            </div>
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 font-mono text-xs">
+              <i data-lucide="shield-alert" class="w-4 h-4"></i> 2FA ENFORCED
+            </div>
+          </div>
+        </div>
+
+        <!-- Password Modification Card -->
+        <div class="glass-panel p-6 rounded-2xl space-y-5">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-cyber font-semibold text-white flex items-center gap-2">
+              <i data-lucide="key" class="w-4 h-4 text-neon-orange"></i> Update Neural Encryption Key (Password)
+            </h3>
+            <span class="text-xs font-mono text-neutral-500">Security protocol active</span>
+          </div>
+
+          <form onsubmit="handlePasswordUpdate(event)" class="space-y-4 max-w-xl font-mono text-xs">
+            <div>
+              <label class="block text-neutral-400 mb-1">Current Password</label>
+              <div class="relative">
+                <input type="password" id="currentPass" required class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl px-4 py-2.5 text-white pr-10 focus:border-neon-orange outline-none">
+                <button type="button" onclick="togglePassVisibility('currentPass', this)" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white">
+                  <i data-lucide="eye" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-neutral-400 mb-1">New Password</label>
+                <div class="relative">
+                  <input type="password" id="newPass" oninput="checkPassStrength(this.value)" required class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl px-4 py-2.5 text-white pr-10 focus:border-neon-orange outline-none">
+                  <button type="button" onclick="togglePassVisibility('newPass', this)" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label class="block text-neutral-400 mb-1">Confirm New Password</label>
+                <div class="relative">
+                  <input type="password" id="confirmPass" required class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl px-4 py-2.5 text-white pr-10 focus:border-neon-orange outline-none">
+                  <button type="button" onclick="togglePassVisibility('confirmPass', this)" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white">
+                    <i data-lucide="eye" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Password strength meter -->
+            <div class="space-y-1 pt-1">
+              <div class="flex justify-between text-[11px]">
+                <span class="text-neutral-500">Entropy Score</span>
+                <span id="passStrengthLabel" class="text-neon-orange">Awaiting Input</span>
+              </div>
+              <div class="w-full h-1.5 bg-obsidian-800 rounded-full overflow-hidden flex">
+                <div id="strengthBar1" class="h-full w-1/4 bg-obsidian-700 mr-0.5 transition-all"></div>
+                <div id="strengthBar2" class="h-full w-1/4 bg-obsidian-700 mr-0.5 transition-all"></div>
+                <div id="strengthBar3" class="h-full w-1/4 bg-obsidian-700 mr-0.5 transition-all"></div>
+                <div id="strengthBar4" class="h-full w-1/4 bg-obsidian-700 transition-all"></div>
+              </div>
+            </div>
+
+            <button type="submit" class="px-5 py-2.5 bg-obsidian-800 hover:bg-neon-orange hover:text-black border border-neon-orange/40 text-neon-orange font-bold rounded-xl transition-all flex items-center gap-2">
+              <i data-lucide="refresh-cw" class="w-4 h-4"></i> Commit New Key
+            </button>
+          </form>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          
+          <!-- Connected OAuth Providers -->
+          <div class="glass-panel p-6 rounded-2xl space-y-4">
+            <h3 class="text-base font-cyber font-semibold text-white flex items-center gap-2">
+              <i data-lucide="network" class="w-4 h-4 text-neon-orange"></i> Connected Login Providers
+            </h3>
+            <p class="text-xs text-neutral-400 font-mono">Use federated SSO credentials to bypass biometric handshake.</p>
+
+            <div class="space-y-3 font-mono text-xs pt-1">
+              <!-- Google -->
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center font-bold text-white">G</div>
+                  <div>
+                    <div class="font-bold text-white">Google Workspace</div>
+                    <div class="text-[11px] text-neutral-500">Unlinked</div>
+                  </div>
+                </div>
+                <button id="btnGoogleSSO" onclick="toggleSSO('Google')" class="px-3 py-1.5 rounded-lg border border-obsidian-700 bg-obsidian-800 text-neutral-400 hover:text-white transition-colors">
+                  DISCONNECTED
+                </button>
+              </div>
+
+              <!-- GitHub -->
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center">
+                    <i data-lucide="github" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-white">GitHub Enterprise</div>
+                    <div class="text-[11px] text-neutral-500">Unlinked</div>
+                  </div>
+                </div>
+                <button id="btnGithubSSO" onclick="toggleSSO('GitHub')" class="px-3 py-1.5 rounded-lg border border-obsidian-700 bg-obsidian-800 text-neutral-400 hover:text-white transition-colors">
+                  DISCONNECTED
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Sessions -->
+          <div class="glass-panel p-6 rounded-2xl space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-cyber font-semibold text-white flex items-center gap-2">
+                <i data-lucide="monitor" class="w-4 h-4 text-neon-orange"></i> Active Sessions
+              </h3>
+              <button onclick="terminateAllSessions()" class="text-xs font-mono text-rose-400 hover:text-rose-300 underline">Logout Other 2</button>
+            </div>
+            
+            <div class="space-y-3 font-mono text-xs" id="sessionsListContainer">
+              <!-- Current Session -->
+              <div class="p-3 rounded-xl bg-obsidian-900 border border-neon-orange/40 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="laptop" class="w-5 h-5 text-neon-orange"></i>
+                  <div>
+                    <div class="text-white font-medium flex items-center gap-2">
+                      Workstation — Active Node
+                      <span class="text-[10px] px-1.5 py-0.5 rounded bg-neon-dim text-neon-orange">THIS DEVICE</span>
+                    </div>
+                    <div class="text-neutral-500 text-[11px]">Secure HTTPS Connection</div>
+                  </div>
+                </div>
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              </div>
+
+              <!-- Other Sessions -->
+              <div class="p-3 rounded-xl bg-obsidian-900 border border-obsidian-700 flex items-center justify-between session-row" data-id="sess-2">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="smartphone" class="w-5 h-5 text-neutral-400"></i>
+                  <div>
+                    <div class="text-white font-medium">Mobile Client — Primary</div>
+                    <div class="text-neutral-500 text-[11px]">Safari Mobile</div>
+                  </div>
+                </div>
+                <button onclick="terminateSession('sess-2')" class="text-rose-400 hover:text-rose-300 text-xs">Revoke</button>
+              </div>
+
+              <div class="p-3 rounded-xl bg-obsidian-900 border border-obsidian-700 flex items-center justify-between session-row" data-id="sess-3">
+                <div class="flex items-center gap-3">
+                  <i data-lucide="terminal" class="w-5 h-5 text-neutral-400"></i>
+                  <div>
+                    <div class="text-white font-medium">Terminal Node</div>
+                    <div class="text-neutral-500 text-[11px]">SSH Tunnel</div>
+                  </div>
+                </div>
+                <button onclick="terminateSession('sess-3')" class="text-rose-400 hover:text-rose-300 text-xs">Revoke</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Danger Zone: Account Deletion -->
+        <div class="p-6 rounded-2xl border border-rose-900/50 bg-rose-950/20 space-y-4">
+          <div class="flex items-start justify-between">
+            <div>
+              <h4 class="text-sm font-cyber font-bold text-rose-400 flex items-center gap-2">
+                <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-400"></i> DANGER PROTOCOL: PERMANENT PURGE
+              </h4>
+              <p class="text-xs text-neutral-400 font-mono mt-1">
+                Deletes all interview scores, telemetry recordings, synthetic persona weights, and active subscriptions permanently.
+              </p>
+            </div>
+            <button onclick="openDeleteModal()" class="px-4 py-2 text-xs font-mono font-bold bg-rose-600 hover:bg-rose-500 text-white rounded-xl transition-all shadow-lg hover:shadow-rose-600/30">
+              PURGE ACCOUNT
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 3: PRIVACY & DATA                      -->
+      <!-- ========================================== -->
+      <section id="tab-privacy" class="tab-content space-y-6 hidden">
+        
+        <div class="glass-panel p-6 rounded-2xl">
+          <div class="flex items-center gap-2 text-xs font-mono text-neon-orange uppercase tracking-widest mb-1">
+            <i data-lucide="binary" class="w-4 h-4"></i> Telemetry & Data Sovereignty
+          </div>
+          <h2 class="text-2xl font-cyber font-bold text-white tracking-wide">Privacy & Data Governance</h2>
+          <p class="text-sm text-neutral-400 mt-1">Inspect and calibrate optical sensors, acoustic recording permissions, interview history, and training consents.</p>
+        </div>
+
+        <!-- Hardware Sensor Authorization Matrix -->
+        <div class="glass-panel p-6 rounded-2xl space-y-6">
+          <h3 class="text-base font-cyber font-semibold text-white flex items-center gap-2">
+            <i data-lucide="webcam" class="w-4 h-4 text-neon-orange"></i> Optical & Audio Sensor Access
+          </h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 font-mono text-xs">
+            
+            <!-- Camera Status Card -->
+            <div class="p-4 rounded-xl bg-obsidian-900 border border-obsidian-700 space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="p-2 rounded-lg bg-obsidian-800 text-neon-orange">
+                    <i data-lucide="camera" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-white text-sm">Visual Stream (Camera)</div>
+                    <div class="text-[11px] text-neutral-400">Eye tracking & micro-expression detection</div>
+                  </div>
+                </div>
+                <span id="camPermissionBadge" class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">AUTHORIZED</span>
+              </div>
+              <div class="flex items-center justify-between pt-2 border-t border-obsidian-800">
+                <button onclick="testCameraStream()" class="text-neon-orange hover:underline flex items-center gap-1">
+                  <i data-lucide="play" class="w-3.5 h-3.5"></i> Run 5s Test Loop
+                </button>
+                <button onclick="toggleSensorPerm('cam')" id="camToggleBtn" class="text-neutral-400 hover:text-white">Revoke Access</button>
+              </div>
+            </div>
+
+            <!-- Mic Status Card -->
+            <div class="p-4 rounded-xl bg-obsidian-900 border border-obsidian-700 space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="p-2 rounded-lg bg-obsidian-800 text-neon-orange">
+                    <i data-lucide="mic" class="w-5 h-5"></i>
+                  </div>
+                  <div>
+                    <div class="font-bold text-white text-sm">Acoustic Feed (Microphone)</div>
+                    <div class="text-[11px] text-neutral-400">Speech cadence, tone & pause analytics</div>
+                  </div>
+                </div>
+                <span id="micPermissionBadge" class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">AUTHORIZED</span>
+              </div>
+              <div class="flex items-center justify-between pt-2 border-t border-obsidian-800">
+                <button onclick="testMicStream()" class="text-neon-orange hover:underline flex items-center gap-1">
+                  <i data-lucide="activity" class="w-3.5 h-3.5"></i> Sound Waveform Test
+                </button>
+                <button onclick="toggleSensorPerm('mic')" id="micToggleBtn" class="text-neutral-400 hover:text-white">Revoke Access</button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Recording Preferences Toggles -->
+          <div class="pt-4 border-t border-obsidian-800 space-y-4">
+            <h4 class="text-xs font-mono uppercase tracking-wider text-neutral-300 font-semibold">Recording & Model Training Preferences</h4>
+
+            <div class="space-y-3 font-mono text-xs">
+              
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+                <div class="pr-4">
+                  <div class="text-white font-medium">Record Audio & Video of Practice Interviews</div>
+                  <div class="text-neutral-500 text-[11px]">Enables playback rewind in post-interview debrief modules.</div>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" id="prefRecordMedia" checked class="sr-only peer">
+                  <div class="w-11 h-6 bg-obsidian-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neon-orange shadow-inner"></div>
+                </label>
+              </div>
+
+              <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+                <div class="pr-4">
+                  <div class="text-white font-medium flex items-center gap-2">
+                    Contribute Anonymized Telemetry to SARATHI-AI Interviewer Model Training
+                    <span class="text-neon-orange" title="SARATHI-AI Interviewer anonymizes biometric data and uses it strictly to train question generation engines."><i data-lucide="info" class="w-3.5 h-3.5"></i></span>
+                  </div>
+                  <div class="text-neutral-500 text-[11px]">Your voice and face are blurred; only linguistic vector embeddings are aggregated.</div>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input type="checkbox" id="prefModelTraining" class="sr-only peer">
+                  <div class="w-11 h-6 bg-obsidian-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neon-orange shadow-inner"></div>
+                </label>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <div class="glass-panel p-6 rounded-2xl space-y-4 font-mono text-xs">
+            <h3 class="text-base font-cyber font-semibold text-white flex items-center gap-2">
+              <i data-lucide="clock" class="w-4 h-4 text-neon-orange"></i> Data Retention Lifecycle
+            </h3>
+            <p class="text-neutral-400">Configure how long past session recordings & synthetic transciptions remain stored in encrypted cloud nodes.</p>
+
+            <div class="space-y-2 pt-2">
+              <label class="text-neutral-400">Automatic Session Auto-Purge</label>
+              <select id="retentionSelect" class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl px-3.5 py-2.5 text-white focus:border-neon-orange outline-none">
+                <option value="30">Retain for 30 Days (Recommended)</option>
+                <option value="90">Retain for 90 Days</option>
+                <option value="365">Retain for 1 Year</option>
+                <option value="forever">Never delete automatically</option>
+              </select>
+            </div>
+
+            <div class="pt-3">
+              <button onclick="confirmClearCache()" class="w-full py-2.5 rounded-xl border border-rose-500/40 text-rose-400 hover:bg-rose-500/10 transition-colors flex items-center justify-center gap-2">
+                <i data-lucide="trash-2" class="w-4 h-4"></i> Clear All Cached Audio & Video
+              </button>
+            </div>
+          </div>
+
+          <div class="glass-panel p-6 rounded-2xl space-y-4 font-mono text-xs">
+            <h3 class="text-base font-cyber font-semibold text-white flex items-center gap-2">
+              <i data-lucide="download" class="w-4 h-4 text-neon-orange"></i> Export Personal Cyber Archive
+            </h3>
+            <p class="text-neutral-400">Request a full machine-readable JSON package containing interview metrics, transcripts, rubrics, and feedback logs.</p>
+
+            <div class="p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700 space-y-2">
+              <div class="flex justify-between text-neutral-300">
+                <span>Includes:</span>
+                <span class="text-white font-bold">Session History & Rubrics</span>
+              </div>
+              <div class="flex justify-between text-neutral-300">
+                <span>Format:</span>
+                <span class="text-neon-orange font-bold">ZIP + JSON + SRT Subtitles</span>
+              </div>
+            </div>
+
+            <button id="downloadDataBtn" onclick="triggerPersonalDataDownload()" class="w-full py-2.5 bg-neon-orange hover:bg-neon-bright text-black font-bold rounded-xl transition-all shadow-neon flex items-center justify-center gap-2">
+              <i data-lucide="file-archive" class="w-4 h-4"></i> Download Personal Dossier (.JSON)
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 4: NOTIFICATIONS                       -->
+      <!-- ========================================== -->
+      <section id="tab-notifications" class="tab-content space-y-6 hidden">
+        
+        <div class="glass-panel p-6 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-2 text-xs font-mono text-neon-orange uppercase tracking-widest mb-1">
+              <i data-lucide="bell" class="w-4 h-4"></i> Signal Dispatchers
+            </div>
+            <h2 class="text-2xl font-cyber font-bold text-white tracking-wide">Notification Matrix</h2>
+            <p class="text-sm text-neutral-400 mt-1">Calibrate neural pings, scheduled interview warnings, and performance reports.</p>
+          </div>
+          <button onclick="toggleAllNotifications()" id="masterMuteBtn" class="px-4 py-2 rounded-xl border border-neon-orange text-neon-orange bg-neon-dim hover:bg-neon-orange hover:text-black font-mono text-xs font-bold transition-all">
+            MUTE ALL CHANNELS
+          </button>
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl space-y-5 font-mono text-xs">
+          <h3 class="text-base font-cyber font-semibold text-white flex items-center gap-2">
+            <i data-lucide="volume-2" class="w-4 h-4 text-neon-orange"></i> Event Dispatch Triggers
+          </h3>
+
+          <div class="space-y-3" id="notifTogglesList">
+            
+            <!-- Item 1 -->
+            <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+              <div class="space-y-0.5">
+                <div class="text-white font-medium flex items-center gap-2">
+                  <i data-lucide="calendar" class="w-4 h-4 text-neon-orange"></i> Interview Schedule & Pre-Flight Reminders
+                </div>
+                <div class="text-neutral-500 text-[11px]">Receive SMS and email reminders 1 hour and 10 minutes prior to scheduled mock sessions.</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" checked class="notif-toggle sr-only peer">
+                <div class="w-11 h-6 bg-obsidian-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neon-orange"></div>
+              </label>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+              <div class="space-y-0.5">
+                <div class="text-white font-medium flex items-center gap-2">
+                  <i data-lucide="trending-up" class="w-4 h-4 text-neon-orange"></i> Weekly Performance & Growth Summaries
+                </div>
+                <div class="text-neutral-500 text-[11px]">Aggregated AI assessment charts detailing filler words, coding speed, and confidence rating.</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" checked class="notif-toggle sr-only peer">
+                <div class="w-11 h-6 bg-obsidian-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neon-orange"></div>
+              </label>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+              <div class="space-y-0.5">
+                <div class="text-white font-medium flex items-center gap-2">
+                  <i data-lucide="award" class="w-4 h-4 text-neon-orange"></i> Milestones, Badges & Free Credit Rewards
+                </div>
+                <div class="text-neutral-500 text-[11px]">Alerts whenever you conquer an interview streak or unlock bonus free practice credits.</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" checked class="notif-toggle sr-only peer">
+                <div class="w-11 h-6 bg-obsidian-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neon-orange"></div>
+              </label>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+              <div class="space-y-0.5">
+                <div class="text-white font-medium flex items-center gap-2">
+                  <i data-lucide="receipt" class="w-4 h-4 text-neon-orange"></i> Subscription & Billing Invoices
+                </div>
+                <div class="text-neutral-500 text-[11px]">Automatic receipt confirmations, payment issues, and renewal heads-up.</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" checked class="notif-toggle sr-only peer">
+                <div class="w-11 h-6 bg-obsidian-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neon-orange"></div>
+              </label>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+              <div class="space-y-0.5">
+                <div class="text-white font-medium flex items-center gap-2">
+                  <i data-lucide="sparkles" class="w-4 h-4 text-neon-orange"></i> SARATHI-AI Interviewer Product Updates & Models
+                </div>
+                <div class="text-neutral-500 text-[11px]">Changelog notes when new interview personas or rubrics go live.</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" class="notif-toggle sr-only peer">
+                <div class="w-11 h-6 bg-obsidian-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neon-orange"></div>
+              </label>
+            </div>
+
+          </div>
+
+          <!-- Email Frequency Radio -->
+          <div class="pt-4 border-t border-obsidian-800 space-y-3">
+            <h4 class="text-xs font-mono uppercase tracking-wider text-neutral-300 font-semibold">Email Digest Frequency</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <label class="flex items-center gap-2.5 p-3 rounded-xl bg-obsidian-900 border border-obsidian-700 cursor-pointer hover:border-neon-orange transition-colors">
+                <input type="radio" name="email_freq" value="realtime" class="accent-neon-orange">
+                <span class="text-white">Instant / Real-time</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-xl bg-obsidian-900 border border-neon-orange/60 bg-neon-dim cursor-pointer">
+                <input type="radio" name="email_freq" value="daily" checked class="accent-neon-orange">
+                <span class="text-white font-semibold">Daily AI Digest</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-xl bg-obsidian-900 border border-obsidian-700 cursor-pointer hover:border-neon-orange transition-colors">
+                <input type="radio" name="email_freq" value="weekly" class="accent-neon-orange">
+                <span class="text-white">Weekly Briefing</span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 5: SUBSCRIPTION & USAGE                -->
+      <!-- ========================================== -->
+      <section id="tab-subscription" class="tab-content space-y-6 hidden">
+        
+        <div class="glass-panel p-6 rounded-2xl">
+          <div class="flex items-center gap-2 text-xs font-mono text-neon-orange uppercase tracking-widest mb-1">
+            <i data-lucide="zap" class="w-4 h-4"></i> Plan Architecture & Compute Credits
+          </div>
+          <h2 class="text-2xl font-cyber font-bold text-white tracking-wide">Subscription & Usage</h2>
+          <p class="text-sm text-neutral-400 mt-1">Review live credit balances, upgrade neural capabilities, manage invoices, or redeem milestones.</p>
+        </div>
+
+        <!-- Current Plan Overview & Usage Gauge -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Plan Hero Card -->
+          <div class="lg:col-span-2 glass-panel p-6 rounded-2xl relative overflow-hidden flex flex-col justify-between space-y-6 border-neon-orange/40">
+            <div class="absolute -right-12 -top-12 w-48 h-48 bg-neon-orange/15 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-neon-orange text-black shadow-neon">
+                  ACTIVE TIER: PRO NEON
+                </span>
+                <span class="text-xs font-mono text-neutral-400">Renews in 18 days</span>
+              </div>
+              <h3 class="text-3xl font-cyber font-bold text-white pt-2">$ -- <span class="text-sm font-normal text-neutral-400">/ month</span></h3>
+              <p class="text-xs text-neutral-300 font-mono">
+                Unlimited algorithmic coding interviews, full voice synthesizers, behavioral psychometric feedback, and targeted resume tailoring.
+              </p>
+            </div>
+
+            <!-- Credits Progress Bar -->
+            <div class="space-y-2 font-mono text-xs">
+              <div class="flex justify-between items-center">
+                <span class="text-neutral-300">Monthly Usage Credits</span>
+                <span class="text-neon-orange font-bold text-sm">18 / 25 SESSIONS REMAINING</span>
+              </div>
+              <div class="w-full h-3 bg-obsidian-900 border border-obsidian-700 rounded-full overflow-hidden p-0.5">
+                <div class="h-full bg-gradient-to-r from-neon-bright to-neon-amber rounded-full shadow-neon" style="width: 72%;"></div>
+              </div>
+              <div class="flex justify-between text-[11px] text-neutral-500">
+                <span>7 Used (28%)</span>
+                <span>Cycle Active</span>
+              </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <button onclick="openPlansModal()" class="px-5 py-2.5 bg-neon-orange hover:bg-neon-bright text-black font-bold font-mono text-xs rounded-xl shadow-neon transition-all flex items-center gap-2">
+                <i data-lucide="chevrons-up" class="w-4 h-4"></i> CHANGE OR UPGRADE PLAN
+              </button>
+              <button onclick="openCancelModal()" class="px-4 py-2.5 bg-obsidian-850 hover:bg-obsidian-800 border border-obsidian-700 text-rose-400 font-mono text-xs rounded-xl transition-all">
+                Cancel Subscription
+              </button>
+            </div>
+          </div>
+
+          <!-- Milestone Rewards & Free Eligibility -->
+          <div class="glass-panel p-6 rounded-2xl flex flex-col justify-between font-mono text-xs space-y-4">
+            <div>
+              <div class="flex items-center gap-2 text-neon-orange mb-1">
+                <i data-lucide="gift" class="w-4 h-4"></i>
+                <span class="font-bold tracking-wider">EARN FREE MONTHS</span>
+              </div>
+              <h4 class="text-sm font-cyber font-bold text-white">Student & Pro Milestone</h4>
+              <p class="text-neutral-400 mt-1">Complete high-grade technical simulations to unlock 1 month of complimentary Pro credit automatically.</p>
+            </div>
+
+            <!-- Milestone Progress Gauge -->
+            <div class="p-4 rounded-xl bg-obsidian-900 border border-obsidian-700 text-center space-y-2">
+              <div class="text-2xl font-cyber font-bold text-neon-orange">7 / 10</div>
+              <div class="text-[11px] text-neutral-300">Mock Interviews Completed with >80% Score</div>
+              <div class="w-full h-2 bg-obsidian-800 rounded-full overflow-hidden">
+                <div class="h-full bg-neon-orange rounded-full" style="width: 70%;"></div>
+              </div>
+              <div class="text-[10px] text-neutral-500 font-bold">Only 3 more sessions to trigger free pass!</div>
+            </div>
+
+            <button onclick="showToast('Milestone tracker refreshed. 3 sessions to next tier bonus!', 'success')" class="w-full py-2 bg-obsidian-800 hover:bg-obsidian-700 border border-obsidian-700 text-neutral-300 rounded-xl transition-colors">
+              Check Reward Eligibility
+            </button>
+          </div>
+
+        </div>
+
+        <div class="glass-panel p-6 rounded-2xl space-y-4 font-mono text-xs">
+          <div class="flex items-center justify-between">
+            <h3 class="text-base font-cyber font-semibold text-white flex items-center gap-2">
+              <i data-lucide="receipt" class="w-4 h-4 text-neon-orange"></i> Billing History & Invoices
+            </h3>
+            <span class="text-neutral-400">Payment Gateway Enabled</span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-obsidian-800 text-neutral-500 uppercase text-[10px]">
+                  <th class="py-3 px-3">Invoice ID</th>
+                  <th class="py-3 px-3">Billing Date</th>
+                  <th class="py-3 px-3">Plan Description</th>
+                  <th class="py-3 px-3">Amount</th>
+                  <th class="py-3 px-3">Status</th>
+                  <th class="py-3 px-3 text-right">Receipt</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-obsidian-800 text-neutral-300">
+                <tr>
+                  <td colspan="6" class="py-8 px-3 text-center text-neutral-500 font-mono text-xs">
+                    No billing history available. Subscribe to a plan to view invoices.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 6: ACCESSIBILITY & DISPLAY             -->
+      <!-- ========================================== -->
+      <section id="tab-accessibility" class="tab-content space-y-6 hidden">
+        
+        <div class="glass-panel p-6 rounded-2xl">
+          <div class="flex items-center gap-2 text-xs font-mono text-neon-orange uppercase tracking-widest mb-1">
+            <i data-lucide="eye" class="w-4 h-4"></i> Ergonomics & Neural Visuals
+          </div>
+          <h2 class="text-2xl font-cyber font-bold text-white tracking-wide">Accessibility & Display</h2>
+          <p class="text-sm text-neutral-400 mt-1">Calibrate typography scale, high-contrast neon outlines, motion dampening, and live HUD camera indicators.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Text Scaling & High Contrast -->
+          <div class="glass-panel p-6 rounded-2xl space-y-6 font-mono text-xs">
+            <h3 class="text-base font-cyber font-semibold text-white flex items-center gap-2">
+              <i data-lucide="type" class="w-4 h-4 text-neon-orange"></i> Typography & Visual Contrast
+            </h3>
+
+            <!-- Dynamic Text Scale Slider -->
+            <div class="space-y-3">
+              <div class="flex justify-between items-center">
+                <span class="text-neutral-300">Live UI Text Scaling</span>
+                <span id="textScaleValue" class="text-neon-orange font-bold text-sm">100% (Standard)</span>
+              </div>
+              <input 
+                type="range" 
+                id="fontScaleSlider" 
+                min="85" 
+                max="135" 
+                value="100" 
+                oninput="adjustTextScale(this.value)" 
+                class="w-full accent-neon-orange cursor-pointer bg-obsidian-800"
+              />
+              <div class="flex justify-between text-[10px] text-neutral-500">
+                <span>85% (Compact)</span>
+                <span>100%</span>
+                <span>135% (Large Accessible)</span>
+              </div>
+            </div>
+
+            <!-- High Contrast Mode Toggle -->
+            <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+              <div>
+                <div class="text-white font-medium">High-Contrast Neon Mode</div>
+                <div class="text-neutral-500 text-[11px]">Amplifies border luminescence and pure black background.</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="toggleHighContrast" onchange="toggleHighContrastMode(this.checked)" class="sr-only peer">
+                <div class="w-11 h-6 bg-obsidian-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neon-orange"></div>
+              </label>
+            </div>
+
+            <!-- Reduced Motion Toggle -->
+            <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+              <div>
+                <div class="text-white font-medium">Reduced Animation & Glitch Effects</div>
+                <div class="text-neutral-500 text-[11px]">Suppresses ambient scanlines, background pulses, and transitions.</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="toggleReducedMotion" onchange="toggleReducedMotionMode(this.checked)" class="sr-only peer">
+                <div class="w-11 h-6 bg-obsidian-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neon-orange"></div>
+              </label>
+            </div>
+
+          </div>
+
+          <div class="glass-panel p-6 rounded-2xl space-y-6 font-mono text-xs">
+            <h3 class="text-base font-cyber font-semibold text-white flex items-center gap-2">
+              <i data-lucide="subtitles" class="w-4 h-4 text-neon-orange"></i> Live Transcripts & HUD Overlays
+            </h3>
+
+            <!-- AI Captions Toggle -->
+            <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+              <div>
+                <div class="text-white font-medium">Real-time AI Speech Transcripts</div>
+                <div class="text-neutral-500 text-[11px]">Displays instant subtitling of AI interviewer speech stream.</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="toggleCaptions" checked onchange="toggleCaptionsDemo(this.checked)" class="sr-only peer">
+                <div class="w-11 h-6 bg-obsidian-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neon-orange"></div>
+              </label>
+            </div>
+
+            <!-- Subtitle Size -->
+            <div class="space-y-2">
+              <label class="text-neutral-400">Subtitle Size Customization</label>
+              <select id="subtitleSizeSelect" class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl px-3.5 py-2 text-white focus:border-neon-orange outline-none">
+                <option value="text-sm">Standard (14px)</option>
+                <option value="text-base" selected>Comfortable (16px)</option>
+                <option value="text-lg">Large HUD (18px)</option>
+              </select>
+            </div>
+
+            <!-- Visual Floating HUD Indicator Toggle -->
+            <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+              <div>
+                <div class="text-white font-medium">Persistent Hardware HUD Badge</div>
+                <div class="text-neutral-500 text-[11px]">Always-visible status pill for mic/camera recording states.</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="toggleFloatingHud" checked onchange="toggleHudVisibility(this.checked)" class="sr-only peer">
+                <div class="w-11 h-6 bg-obsidian-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neon-orange"></div>
+              </label>
+            </div>
+
+            <!-- Keyboard Navigation Helper -->
+            <div class="flex items-center justify-between p-3.5 rounded-xl bg-obsidian-900 border border-obsidian-700">
+              <div>
+                <div class="text-white font-medium">Enhanced Keyboard Focus Outlines</div>
+                <div class="text-neutral-500 text-[11px]">Adds high-visibility neon halo to focused inputs and buttons.</div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="toggleKeyboardFocus" checked class="sr-only peer">
+                <div class="w-11 h-6 bg-obsidian-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-neon-orange"></div>
+              </label>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- TAB 7: HELP, FEEDBACK & SUPPORT            -->
+      <!-- ========================================== -->
+      <section id="tab-help-feedback" class="tab-content space-y-6 hidden">
+        
+        <div class="glass-panel p-6 rounded-2xl relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-48 h-48 bg-neon-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="flex items-center gap-2 text-xs font-mono text-neon-orange uppercase tracking-widest mb-1">
+            <i data-lucide="life-buoy" class="w-4 h-4"></i> Neural Transmission
+          </div>
+          <h2 class="text-2xl font-cyber font-bold text-white tracking-wide">Help, Feedback & Support</h2>
+          <p class="text-sm text-neutral-400 mt-1">Submit inquiries, bug logs, or platform impressions directly to the SARATHI-AI Interviewer Engineering Unit.</p>
+        </div>
+
+        <!-- Feedback Form Module -->
+        <div class="glass-panel p-6 sm:p-8 rounded-2xl max-w-3xl mx-auto space-y-6">
+          <form id="sarathiFeedbackForm" onsubmit="submitFeedbackForm(event)" class="space-y-5 font-mono text-xs">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <!-- Name* -->
+              <div>
+                <label class="block text-neutral-300 mb-1 font-semibold uppercase">
+                  Name <span class="text-neon-orange">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="fbName" 
+                  required 
+                  placeholder="Your full identifier..."
+                  class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl px-4 py-2.5 text-white placeholder-neutral-600 focus:border-neon-orange focus:ring-1 focus:ring-neon-orange outline-none transition-all"
+                />
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label class="block text-neutral-300 mb-1 font-semibold uppercase">
+                  Email
+                </label>
+                <input 
+                  type="email" 
+                  id="fbEmail" 
+                  placeholder="contact@domain.com"
+                  class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl px-4 py-2.5 text-white placeholder-neutral-600 focus:border-neon-orange focus:ring-1 focus:ring-neon-orange outline-none transition-all"
+                />
+              </div>
+            </div>
+
+            <!-- Feedback type * -->
+            <div>
+              <label class="block text-neutral-300 mb-1 font-semibold uppercase">
+                Feedback Type <span class="text-neon-orange">*</span>
+              </label>
+              <select 
+                id="fbType" 
+                required 
+                class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl px-4 py-2.5 text-white focus:border-neon-orange focus:ring-1 focus:ring-neon-orange outline-none transition-all"
+              >
+                <option value="" disabled selected>-- Select Transmission Classification --</option>
+                <option value="AI Interview Experience">AI Interview Experience</option>
+                <option value="Bug Report">System Anomaly / Bug Report</option>
+                <option value="Feature Request">Architectural Feature Request</option>
+                <option value="Billing & Account">Billing & Account Inquiry</option>
+                <option value="General Feedback">General Feedback</option>
+              </select>
+            </div>
+
+            <!-- How was your experience? * -->
+            <div class="space-y-2">
+              <label class="block text-neutral-300 font-semibold uppercase">
+                How was your experience? <span class="text-neon-orange">*</span>
+              </label>
+              <div class="flex items-center gap-3 py-1">
+                <input type="hidden" id="fbRatingVal" value="5" required>
+                <div class="flex items-center gap-2" id="starRatingGroup">
+                  <button type="button" onclick="setExperienceRating(1)" class="star-btn p-1.5 rounded-lg text-neon-orange hover:scale-125 transition-transform" data-star="1">
+                    <i data-lucide="star" class="w-6 h-6 fill-neon-orange text-neon-orange"></i>
+                  </button>
+                  <button type="button" onclick="setExperienceRating(2)" class="star-btn p-1.5 rounded-lg text-neon-orange hover:scale-125 transition-transform" data-star="2">
+                    <i data-lucide="star" class="w-6 h-6 fill-neon-orange text-neon-orange"></i>
+                  </button>
+                  <button type="button" onclick="setExperienceRating(3)" class="star-btn p-1.5 rounded-lg text-neon-orange hover:scale-125 transition-transform" data-star="3">
+                    <i data-lucide="star" class="w-6 h-6 fill-neon-orange text-neon-orange"></i>
+                  </button>
+                  <button type="button" onclick="setExperienceRating(4)" class="star-btn p-1.5 rounded-lg text-neon-orange hover:scale-125 transition-transform" data-star="4">
+                    <i data-lucide="star" class="w-6 h-6 fill-neon-orange text-neon-orange"></i>
+                  </button>
+                  <button type="button" onclick="setExperienceRating(5)" class="star-btn p-1.5 rounded-lg text-neon-orange hover:scale-125 transition-transform" data-star="5">
+                    <i data-lucide="star" class="w-6 h-6 fill-neon-orange text-neon-orange"></i>
+                  </button>
+                </div>
+                <span id="starRatingLabel" class="text-neon-orange font-bold text-xs pl-2">5.0 / Stellar Connection</span>
+              </div>
+            </div>
+
+            <!-- Subject * -->
+            <div>
+              <label class="block text-neutral-300 mb-1 font-semibold uppercase">
+                Subject <span class="text-neon-orange">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="fbSubject" 
+                required 
+                placeholder="Brief synopsis of feedback..."
+                class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl px-4 py-2.5 text-white placeholder-neutral-600 focus:border-neon-orange focus:ring-1 focus:ring-neon-orange outline-none transition-all"
+              />
+            </div>
+
+            <!-- Your feedback * -->
+            <div class="space-y-1">
+              <div class="flex justify-between items-center">
+                <label class="block text-neutral-300 font-semibold uppercase">
+                  Your Feedback <span class="text-neon-orange">*</span>
+                </label>
+                <span id="charCounter" class="text-neutral-500 text-[11px]">0 / 1000</span>
+              </div>
+              <textarea 
+                id="fbContent" 
+                rows="5" 
+                required 
+                maxlength="1000"
+                oninput="updateCharCount(this)"
+                placeholder="Describe your session, prompt interactions, audio clarity, or suggested enhancements..."
+                class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl p-4 text-white placeholder-neutral-600 focus:border-neon-orange focus:ring-1 focus:ring-neon-orange outline-none transition-all resize-y"
+              ></textarea>
+            </div>
+
+            <!-- Submit button -->
+            <div class="pt-2 flex items-center justify-end gap-3">
+              <button 
+                type="reset" 
+                onclick="resetFeedbackForm()" 
+                class="px-5 py-2.5 rounded-xl border border-obsidian-700 text-neutral-400 hover:text-white hover:bg-obsidian-850 transition-colors font-mono"
+              >
+                Reset
+              </button>
+              <button 
+                type="submit" 
+                id="fbSubmitBtn"
+                class="px-7 py-2.5 bg-neon-orange hover:bg-neon-bright text-black font-bold rounded-xl shadow-neon transition-all flex items-center gap-2 font-mono"
+              >
+                <i data-lucide="send" class="w-4 h-4"></i> TRANSMIT FEEDBACK
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <div id="floatingHudIndicator" class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-obsidian-950/90 border border-neon-orange/50 p-2.5 px-4 rounded-full shadow-neon backdrop-blur-md font-mono text-xs">
+    <div class="flex items-center gap-2">
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-bright opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-neon-orange"></span>
+      </span>
+      <span class="text-white font-bold">SARATHI HUD:</span>
+    </div>
+    <div class="flex items-center gap-3 text-neutral-300 text-[11px] pl-2 border-l border-obsidian-700">
+      <span id="hudCamIcon" class="flex items-center gap-1 text-emerald-400">
+        <i data-lucide="camera" class="w-3.5 h-3.5"></i> CAM:OK
+      </span>
+      <span id="hudMicIcon" class="flex items-center gap-1 text-emerald-400">
+        <i data-lucide="mic" class="w-3.5 h-3.5"></i> MIC:OK
+      </span>
+    </div>
+    <button onclick="toggleHudVisibility(false)" class="text-neutral-500 hover:text-white ml-1" title="Dismiss HUD">
+      <i data-lucide="x" class="w-3.5 h-3.5"></i>
+    </button>
+  </div>
+
+  <!-- Plan Upgrade Comparison Modal -->
+  <div id="planModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+    <div class="glass-panel p-6 sm:p-8 rounded-2xl max-w-4xl w-full border-neon-orange/60 space-y-6 max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-start">
+        <div>
+          <span class="text-xs font-mono text-neon-orange uppercase tracking-wider">Neural Tier Matrix</span>
+          <h3 class="text-2xl font-cyber font-bold text-white">Upgrade AI Capabilities</h3>
+        </div>
+        <button onclick="closePlansModal()" class="p-1.5 rounded-lg bg-obsidian-800 text-neutral-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5 font-mono text-xs">
+        <!-- Free Starter -->
+        <div class="p-5 rounded-2xl bg-obsidian-900 border border-obsidian-700 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <span class="text-neutral-400 font-bold">STARTER</span>
+            <div class="text-2xl font-cyber text-white font-bold">$ -- <span class="text-xs font-normal text-neutral-500">/mo</span></div>
+            <p class="text-neutral-400">3 AI interviews/mo, standard text evaluation, no video emotion analysis.</p>
+          </div>
+          <button onclick="switchPlanTier('Starter')" class="w-full py-2 bg-obsidian-800 hover:bg-obsidian-700 text-white rounded-xl">
+            Downgrade to Free
+          </button>
+        </div>
+
+        <!-- Pro Neon (Active) -->
+        <div class="p-5 rounded-2xl bg-obsidian-850 border-2 border-neon-orange shadow-neon flex flex-col justify-between space-y-4 relative">
+          <span class="absolute -top-3 right-4 px-2 py-0.5 rounded-full bg-neon-orange text-black font-bold text-[10px]">CURRENT PLAN</span>
+          <div class="space-y-2">
+            <span class="text-neon-orange font-bold">PRO NEON</span>
+            <div class="text-2xl font-cyber text-white font-bold">$ -- <span class="text-xs font-normal text-neutral-500">/mo</span></div>
+            <p class="text-neutral-300">25 credits/mo, low-latency audio LLM, realtime posture and micro-gesture analytics.</p>
+          </div>
+          <button disabled class="w-full py-2 bg-neon-dim text-neon-orange border border-neon-orange/40 rounded-xl cursor-default font-bold">
+            Active Tier
+          </button>
+        </div>
+
+        <!-- Enterprise AI -->
+        <div class="p-5 rounded-2xl bg-obsidian-900 border border-obsidian-700 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <span class="text-neutral-400 font-bold">ENTERPRISE CORE</span>
+            <div class="text-2xl font-cyber text-white font-bold">$ -- <span class="text-xs font-normal text-neutral-500">/mo</span></div>
+            <p class="text-neutral-400">Unlimited credits, custom company interview simulation, dedicated synthetic persona training.</p>
+          </div>
+          <button onclick="switchPlanTier('Enterprise Core')" class="w-full py-2 bg-neon-orange hover:bg-neon-bright text-black font-bold rounded-xl shadow-neon">
+            Upgrade Tier
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Account Deletion Confirmation Modal -->
+  <div id="deleteModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md hidden">
+    <div class="glass-panel p-6 sm:p-8 rounded-2xl max-w-md w-full border-rose-600/60 space-y-4 font-mono text-xs">
+      <div class="flex items-center gap-3 text-rose-500">
+        <i data-lucide="alert-octagon" class="w-7 h-7"></i>
+        <h3 class="text-lg font-cyber font-bold text-white">CONFIRM SYSTEM PURGE</h3>
+      </div>
+      <p class="text-neutral-300">
+        This action is completely non-reversible. All telemetry logs, performance metrics, and candidate transcripts will be shredded from our neural cluster.
+      </p>
+      <div class="space-y-1 pt-2">
+        <label class="text-neutral-400">To confirm, type <span class="text-rose-400 font-bold">DELETE-SARATHI</span> below:</label>
+        <input type="text" id="deleteConfirmInput" placeholder="DELETE-SARATHI" class="w-full bg-obsidian-900 border border-rose-500/50 rounded-xl px-3.5 py-2 text-white outline-none">
+      </div>
+      <div class="flex items-center justify-end gap-3 pt-3">
+        <button onclick="closeDeleteModal()" class="px-4 py-2 rounded-xl bg-obsidian-800 text-neutral-300 hover:text-white">Cancel</button>
+        <button onclick="executeAccountPurge()" class="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-bold shadow-lg">Confirm Purge</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subscription Cancellation Modal -->
+  <div id="cancelSubModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+    <div class="glass-panel p-6 sm:p-8 rounded-2xl max-w-md w-full border-obsidian-700 space-y-4 font-mono text-xs">
+      <h3 class="text-lg font-cyber font-bold text-white">Pause or Cancel Plan</h3>
+      <p class="text-neutral-300">
+        If you cancel now, your Pro features will remain accessible until <span class="text-neon-orange font-bold">the end of the current billing cycle</span>.
+      </p>
+      <div class="space-y-2">
+        <label class="text-neutral-400">Why are you disconnecting?</label>
+        <select id="cancelReasonSelect" class="w-full bg-obsidian-900 border border-obsidian-700 rounded-xl p-2.5 text-white">
+          <option>Already secured my target tech job!</option>
+          <option>Need a temporary break from practice</option>
+          <option>Looking for cheaper alternate tools</option>
+          <option>Other / Unspecified</option>
+        </select>
+      </div>
+      <div class="flex items-center justify-end gap-3 pt-2">
+        <button onclick="closeCancelModal()" class="px-4 py-2 rounded-xl bg-obsidian-800 text-neutral-300">Keep Pro</button>
+        <button onclick="confirmCancelSub()" class="px-4 py-2 rounded-xl border border-rose-500/50 text-rose-400 hover:bg-rose-500/10">Confirm Cancellation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div id="toastNotification" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="px-5 py-3 rounded-xl bg-obsidian-900 border border-neon-orange/70 shadow-neon flex items-center gap-3 text-xs font-mono text-white backdrop-blur-md">
+      <i id="toastIcon" data-lucide="check-circle" class="w-4 h-4 text-neon-orange"></i>
+      <span id="toastMessage">Operation successfully committed.</span>
+    </div>
+  </div>
+
+<script src="Setting.js"></script>
+</body>
+</html>

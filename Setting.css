@@ -1,0 +1,104 @@
+
+    :root {
+      --ui-scale-multiplier: 1;
+    }
+
+    body {
+      background-color: #07070a;
+      color: #f3f4f6;
+      font-family: 'Inter', sans-serif;
+      font-size: calc(15px * var(--ui-scale-multiplier));
+      overflow-x: hidden;
+    }
+
+    /* Ambient cybernetic grid background */
+    .cyber-grid {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 106, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 106, 0, 0.04) 1px, transparent 1px);
+    }
+
+    /* Custom neon scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0A0A0E;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2a221b;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 106, 0, 0.3);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #FF6A00;
+      box-shadow: 0 0 10px #FF6A00;
+    }
+
+    /* Glass card styles */
+    .glass-panel {
+      background: rgba(16, 16, 23, 0.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 106, 0, 0.18);
+    }
+
+    .glass-panel:hover {
+      border-color: rgba(255, 106, 0, 0.35);
+    }
+
+    .glass-panel-active {
+      background: rgba(24, 20, 26, 0.88);
+      border: 1px solid rgba(255, 106, 0, 0.65);
+      box-shadow: 0 0 18px rgba(255, 106, 0, 0.22);
+    }
+
+    /* High-contrast mode classes */
+    body.high-contrast-mode {
+      --ui-scale-multiplier: 1.05;
+      background-color: #000000 !important;
+      color: #ffffff !important;
+    }
+    body.high-contrast-mode .glass-panel {
+      background: #000000 !important;
+      border: 2px solid #FF6A00 !important;
+    }
+    body.high-contrast-mode .text-neutral-400,
+    body.high-contrast-mode .text-neutral-500 {
+      color: #e5e7eb !important;
+    }
+
+    /* Reduced animation mode */
+    body.reduced-motion * {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    /* Subtle pulsing neon line */
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(1000%); }
+    }
+    .scanner-beam {
+      animation: scanline 8s linear infinite;
+    }
+
+    /* Glow utilities */
+    .text-glow {
+      text-shadow: 0 0 12px rgba(255, 106, 0, 0.7);
+    }
+    .text-glow-white {
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    }
+
+    /* Custom Switch Toggle */
+    .toggle-checkbox:checked {
+      right: 0;
+      border-color: #FF6A00;
+    }
+    .toggle-checkbox:checked + .toggle-label {
+      background-color: #FF6A00;
+      box-shadow: 0 0 14px rgba(255, 106, 0, 0.6);
+    }
