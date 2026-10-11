@@ -1,0 +1,700 @@
+
+        /* =========================
+           RESET
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Inter", sans-serif;
+            background: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+
+        /* =========================
+           BACKGROUND
+        ========================== */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: -1;
+            background: #050505;
+        }
+
+        .glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: #ff6a00;
+            filter: blur(180px);
+            opacity: 0.12;
+        }
+
+        .glow.one {
+            top: -250px;
+            left: -200px;
+        }
+
+        .glow.two {
+            right: -250px;
+            bottom: -250px;
+            opacity: 0.09;
+        }
+
+        /* Grid */
+
+        .grid {
+            position: absolute;
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255, 106, 0, 0.035) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255, 106, 0, 0.035) 1px,
+                    transparent 1px
+                );
+
+            background-size: 50px 50px;
+
+            mask-image: linear-gradient(
+                to bottom,
+                black,
+                transparent
+            );
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================== */
+
+        .container {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+        }
+
+
+        /* =========================
+           AUTH WRAPPER
+        ========================== */
+
+        .auth-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            min-height: 650px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            background: rgba(13, 13, 13, 0.88);
+
+            border: 1px solid #292929;
+
+            border-radius: 24px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 0 0 1px rgba(255, 106, 0, 0.03),
+                0 30px 80px rgba(0, 0, 0, 0.6);
+        }
+
+
+        /* =========================
+           LEFT SIDE
+        ========================== */
+
+        .brand-section {
+            position: relative;
+
+            padding: 55px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            border-right: 1px solid #222;
+
+            background:
+                radial-gradient(
+                    circle at 30% 30%,
+                    rgba(255, 106, 0, 0.13),
+                    transparent 40%
+                );
+        }
+
+
+        /* Logo */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #ff6a00;
+
+            color: #050505;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 0 25px rgba(255, 106, 0, 0.35);
+        }
+
+        .logo span {
+            color: #ff6a00;
+        }
+
+
+        /* Brand content */
+
+        .brand-content {
+            max-width: 430px;
+        }
+
+        .small-label {
+            display: inline-block;
+
+            margin-bottom: 18px;
+
+            padding: 7px 12px;
+
+            border: 1px solid rgba(255, 106, 0, 0.3);
+
+            border-radius: 30px;
+
+            color: #ff8a3d;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            letter-spacing: 0.5px;
+
+            background: rgba(255, 106, 0, 0.05);
+        }
+
+        .brand-content h1 {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: clamp(40px, 4vw, 62px);
+
+            line-height: 1.05;
+
+            margin-bottom: 22px;
+        }
+
+        .brand-content h1 span {
+            color: #ff6a00;
+
+            text-shadow:
+                0 0 30px rgba(255, 106, 0, 0.25);
+        }
+
+        .brand-content p {
+            color: #999;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+
+            max-width: 380px;
+        }
+
+
+        /* Features */
+
+        .features {
+            display: flex;
+            flex-direction: column;
+
+            gap: 14px;
+
+            margin-top: 30px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            color: #d0d0d0;
+
+            font-size: 14px;
+        }
+
+        .feature-icon {
+            width: 28px;
+            height: 28px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background: rgba(255, 106, 0, 0.1);
+
+            color: #ff6a00;
+
+            font-size: 13px;
+        }
+
+
+        /* Footer */
+
+        .brand-footer {
+            color: #555;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           RIGHT SIDE
+        ========================== */
+
+        .auth-section {
+            padding: 55px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            background: #090909;
+        }
+
+
+        /* Heading */
+
+        .auth-header {
+            margin-bottom: 30px;
+        }
+
+        .auth-header h2 {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: 30px;
+
+            margin-bottom: 8px;
+        }
+
+        .auth-header p {
+            color: #777;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           TABS
+        ========================== */
+
+        .tabs {
+            display: flex;
+
+            padding: 4px;
+
+            margin-bottom: 28px;
+
+            background: #111;
+
+            border: 1px solid #222;
+
+            border-radius: 12px;
+        }
+
+        .tab {
+            flex: 1;
+
+            border: none;
+
+            padding: 11px;
+
+            border-radius: 9px;
+
+            background: transparent;
+
+            color: #777;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.25s;
+        }
+
+        .tab.active {
+            background: #ff6a00;
+
+            color: #050505;
+
+            box-shadow:
+                0 0 20px rgba(255, 106, 0, 0.18);
+        }
+
+
+        /* =========================
+           FORM
+        ========================== */
+
+        .form {
+            display: none;
+        }
+
+        .form.active {
+            display: block;
+
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* Input */
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #c8c8c8;
+
+            font-size: 13px;
+
+            font-weight: 500;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+
+            padding: 14px 45px 14px 15px;
+
+            background: #0f0f0f;
+
+            border: 1px solid #282828;
+
+            border-radius: 10px;
+
+            color: #fff;
+
+            outline: none;
+
+            font-size: 14px;
+
+            transition: 0.25s;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #555;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #ff6a00;
+
+            box-shadow:
+                0 0 0 3px rgba(255, 106, 0, 0.08),
+                0 0 20px rgba(255, 106, 0, 0.06);
+        }
+
+
+        /* Password eye */
+
+        .password-toggle {
+            position: absolute;
+
+            right: 14px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: #666;
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+        .password-toggle:hover {
+            color: #ff6a00;
+        }
+
+
+        /* Forgot */
+
+        .forgot {
+            display: block;
+
+            margin-top: -7px;
+            margin-bottom: 20px;
+
+            text-align: right;
+
+            color: #ff7b22;
+
+            font-size: 12px;
+
+            text-decoration: none;
+        }
+
+        .forgot:hover {
+            color: #ff9d5c;
+        }
+
+
+        /* Main button */
+
+        .main-button {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #ff6a00;
+
+            color: #050505;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+
+            box-shadow:
+                0 0 25px rgba(255, 106, 0, 0.15);
+        }
+
+        .main-button:hover {
+            background: #ff8126;
+
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 0 30px rgba(255, 106, 0, 0.3);
+        }
+
+
+        /* =========================
+           DIVIDER
+        ========================== */
+
+        .divider {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin: 24px 0;
+
+            color: #555;
+
+            font-size: 11px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background: #242424;
+        }
+
+
+        /* =========================
+           SOCIAL BUTTONS
+        ========================== */
+
+        .social-buttons {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 10px;
+        }
+
+        .social-button {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 9px;
+
+            padding: 12px;
+
+            background: #101010;
+
+            border: 1px solid #292929;
+
+            border-radius: 10px;
+
+            color: #ddd;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            transition: 0.25s;
+        }
+
+        .social-button:hover {
+            border-color: #ff6a00;
+
+            color: #fff;
+
+            background: #151515;
+        }
+
+        .social-icon {
+            font-weight: 700;
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           BOTTOM TEXT
+        ========================== */
+
+        .switch-text {
+            margin-top: 25px;
+
+            text-align: center;
+
+            color: #666;
+
+            font-size: 12px;
+        }
+
+        .switch-text button {
+            border: none;
+
+            background: transparent;
+
+            color: #ff6a00;
+
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 850px) {
+
+            .auth-wrapper {
+                grid-template-columns: 1fr;
+
+                max-width: 500px;
+
+                min-height: auto;
+            }
+
+            .brand-section {
+                display: none;
+            }
+
+            .auth-section {
+                padding: 40px 30px;
+            }
+        }
+
+
+        @media (max-width: 480px) {
+
+            .container {
+                padding: 15px;
+            }
+
+            .auth-wrapper {
+                border-radius: 18px;
+            }
+
+            .auth-section {
+                padding: 30px 20px;
+            }
+
+            .auth-header h2 {
+                font-size: 26px;
+            }
+
+            .social-buttons {
+                grid-template-columns: 1fr;
+            }
+        }

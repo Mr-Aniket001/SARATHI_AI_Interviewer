@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="Login_page.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SARATHI-AI Interviewer — Authentication</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    
+</head>
+
+
+<body>
+
+
+    <!-- Background -->
+    <div class="background">
+
+        <div class="glow one"></div>
+        <div class="glow two"></div>
+
+        <div class="grid"></div>
+
+    </div>
+
+
+
+    <main class="container">
+
+
+        <div class="auth-wrapper">
+
+
+            <!-- =====================
+                 LEFT BRAND SECTION
+            ====================== -->
+
+            <section class="brand-section">
+
+
+                <div class="logo">
+
+                    <div class="logo-icon">
+                        S
+                    </div>
+
+                    SARATHI-AI <span>Interviewer</span>
+
+                </div>
+
+
+
+                <div class="brand-content">
+
+                    <div class="small-label">
+                        ● AI INTERVIEW PLATFORM
+                    </div>
+
+
+                    <h1>
+                        Prepare.<br>
+                        <span>Practice.</span><br>
+                        Perform.
+                    </h1>
+
+
+                    <p>
+                        Practice real-world interviews with an
+                        AI-powered interviewer and receive instant
+                        feedback to improve your performance.
+                    </p>
+
+
+                    <div class="features">
+
+                        <div class="feature">
+
+                            <div class="feature-icon">
+                                ✦
+                            </div>
+
+                            AI-powered mock interviews
+
+                        </div>
+
+
+                        <div class="feature">
+
+                            <div class="feature-icon">
+                                ✓
+                            </div>
+
+                            Instant performance feedback
+
+                        </div>
+
+
+                        <div class="feature">
+
+                            <div class="feature-icon">
+                                ◈
+                            </div>
+
+                            Personalized interview analysis
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="brand-footer">
+
+                    © 2026 SARATHI-AI Interviewer · All rights reserved
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =====================
+                 AUTH SECTION
+            ====================== -->
+
+            <section class="auth-section">
+
+
+                <div class="auth-header">
+
+                    <h2 id="authTitle">
+                        Welcome back
+                    </h2>
+
+                    <p id="authSubtitle">
+                        Sign in to continue your interview journey.
+                    </p>
+
+                </div>
+
+
+
+                <!-- Tabs -->
+
+                <div class="tabs">
+
+                    <button
+                        class="tab active"
+                        id="signInTab"
+                        onclick="showForm('signin')">
+
+                        Sign In
+
+                    </button>
+
+
+                    <button
+                        class="tab"
+                        id="signUpTab"
+                        onclick="showForm('signup')">
+
+                        Sign Up
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- =====================
+                     SIGN IN FORM
+                ====================== -->
+
+                <form
+                    class="form active"
+                    id="signinForm"
+                    onsubmit="handleSubmit(event, 'signin')">
+
+
+                    <!-- Email -->
+
+                    <div class="input-group">
+
+                        <label for="signinEmail">
+                            Email
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="email"
+                                id="signinEmail"
+                                placeholder="you@example.com"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Password -->
+
+                    <div class="input-group">
+
+                        <label for="signinPassword">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="password"
+                                id="signinPassword"
+                                placeholder="Enter your password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword('signinPassword', this)">
+
+                                ◉
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <a href="#" class="forgot">
+                        Forgot password?
+                    </a>
+
+
+
+                    <button
+                        type="submit"
+                        class="main-button">
+
+                        SIGN IN
+
+                    </button>
+
+
+                    <!-- Divider -->
+
+                    <div class="divider">
+                        OR CONTINUE WITH
+                    </div>
+
+
+                    <!-- Social -->
+
+                    <div class="social-buttons">
+
+                        <button
+                            type="button"
+                            class="social-button">
+
+                            <span class="social-icon">
+                                G
+                            </span>
+
+                            Google
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="social-button">
+
+                            <span class="social-icon">
+                                ◇
+                            </span>
+
+                            GitHub
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="switch-text">
+
+                        Don't have an account?
+
+                        <button
+                            type="button"
+                            onclick="showForm('signup')">
+
+                            Create account
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+
+                <!-- =====================
+                     SIGN UP FORM
+                ====================== -->
+
+                <form
+                    class="form"
+                    id="signupForm"
+                    onsubmit="handleSubmit(event, 'signup')">
+
+
+                    <!-- Name -->
+
+                    <div class="input-group">
+
+                        <label for="signupName">
+                            Name
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="text"
+                                id="signupName"
+                                placeholder="Your name"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Email -->
+
+                    <div class="input-group">
+
+                        <label for="signupEmail">
+                            Email
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="email"
+                                id="signupEmail"
+                                placeholder="you@example.com"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Password -->
+
+                    <div class="input-group">
+
+                        <label for="signupPassword">
+                            Password
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <input
+                                type="password"
+                                id="signupPassword"
+                                placeholder="Create a password"
+                                required>
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="togglePassword('signupPassword', this)">
+
+                                ◉
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <button
+                        type="submit"
+                        class="main-button">
+
+                        CREATE ACCOUNT
+
+                    </button>
+
+
+
+                    <div class="divider">
+                        OR CONTINUE WITH
+                    </div>
+
+
+
+                    <div class="social-buttons">
+
+                        <button
+                            type="button"
+                            class="social-button">
+
+                            <span class="social-icon">
+                                G
+                            </span>
+
+                            Google
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="social-button">
+
+                            <span class="social-icon">
+                                ◇
+                            </span>
+
+                            GitHub
+
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="switch-text">
+
+                        Already have an account?
+
+                        <button
+                            type="button"
+                            onclick="showForm('signin')">
+
+                            Sign in
+
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================
+         JAVASCRIPT
+    ====================== -->
+
+
+<script src="Login_page.js"></script>
+</body>
+</html>
